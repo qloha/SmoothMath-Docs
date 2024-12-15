@@ -1,16 +1,16 @@
-(function(){const n=document.createElement("link").relList;if(n&&n.supports&&n.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const o of t)if(o.type==="childList")for(const s of o.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&i(s)}).observe(document,{childList:!0,subtree:!0});function r(t){const o={};return t.integrity&&(o.integrity=t.integrity),t.referrerPolicy&&(o.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?o.credentials="include":t.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function i(t){if(t.ep)return;t.ep=!0;const o=r(t);fetch(t.href,o)}})();function u(){const e=document.createElement("nav");return e.className="navbar",e.innerHTML=`
+(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const n of t)if(n.type==="childList")for(const s of n.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&i(s)}).observe(document,{childList:!0,subtree:!0});function r(t){const n={};return t.integrity&&(n.integrity=t.integrity),t.referrerPolicy&&(n.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?n.credentials="include":t.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function i(t){if(t.ep)return;t.ep=!0;const n=r(t);fetch(t.href,n)}})();function h(){const e="/SmoothMath-Docs",o=document.createElement("nav");return o.className="navbar",o.innerHTML=`
     <div class="container">
       <h1 class="logo">SmoothMath</h1>
       <ul class="nav-links">
-        <li><a href="/" data-link>Home</a></li>
-        <li><a href="/installation" data-link>Installation</a></li>
-        <li><a href="/usage" data-link>Usage</a></li>
-        <li><a href="/reference" data-link>Reference</a></li>
-        <li><a href="/contributing" data-link>Contributing</a></li>
-        <li><a href="/downloads" data-link>Downloads</a></li>
+        <li><a href="${e}/" data-link>Home</a></li>
+        <li><a href="${e}/installation" data-link>Installation</a></li>
+        <li><a href="${e}/usage" data-link>Usage</a></li>
+        <li><a href="${e}/reference" data-link>Reference</a></li>
+        <li><a href="${e}/contributing" data-link>Contributing</a></li>
+        <li><a href="${e}/downloads" data-link>Downloads</a></li>
       </ul>
     </div>
-  `,e}function h(){const e=document.createElement("footer");return e.className="footer",e.innerHTML=`
+  `,o}function u(){const e=document.createElement("footer");return e.className="footer",e.innerHTML=`
     <div class="container">
       <p>© ${new Date().getFullYear()} SmoothMath. All rights reserved.</p>
       <p>
@@ -95,4 +95,4 @@ sm.divide(2, 4)
       <li><a href="https://files.pythonhosted.org/packages/c7/ed/565633b9225a32ffbbaf10bb9b43965c6c044d0d992451618bf6a57f3444/smoothmath-1.0.5-py3-none-any.whl" target="_blank">1.0.5 [LATEST]</a></li>
     </ul>
     <p>For help with installing, please visit the <a href="/installation" data-link>Installation</a> section.</p>
-  `,e}const a="/SmoothMath-Docs",b={[`${a}/`]:c,[`${a}/installation`]:d,[`${a}/usage`]:p,[`${a}/reference`]:m,[`${a}/contributing`]:f,[`${a}/downloads`]:g};function y(e){history.pushState(null,"",e),l()}function l(){const e=document.querySelector("#app"),n=b[window.location.pathname]||c;e.innerHTML="",e.appendChild(u()),e.appendChild(n()),e.appendChild(h()),v()}function v(){document.querySelectorAll("[data-link]").forEach(n=>{n.addEventListener("click",r=>{r.preventDefault();const i=r.target;y(i.href)})})}document.addEventListener("DOMContentLoaded",()=>{l(),window.addEventListener("popstate",l)});
+  `,e}const a="/SmoothMath-Docs",b={[`${a}/`]:c,[`${a}/installation`]:d,[`${a}/usage`]:p,[`${a}/reference`]:m,[`${a}/contributing`]:f,[`${a}/downloads`]:g};function y(e){const o=`${a}${e.startsWith("/")?e:`/${e}`}`;history.pushState(null,"",o),l()}function l(){const e=document.querySelector("#app"),o=window.location.pathname.replace(a,""),r=b[`${a}${o}`]||c;e.innerHTML="",e.appendChild(h()),e.appendChild(r()),e.appendChild(u()),v()}function v(){document.querySelectorAll("[data-link]").forEach(o=>{o.addEventListener("click",i=>{i.preventDefault();const n=i.currentTarget.getAttribute("href")||"/";y(n)});const r=o;r.href=`${a}${r.getAttribute("href")||"/"}`})}document.addEventListener("DOMContentLoaded",()=>{l(),window.addEventListener("popstate",l)});
