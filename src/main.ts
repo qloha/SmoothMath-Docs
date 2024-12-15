@@ -6,14 +6,15 @@ import { loadUsagePage } from './pages/usage';
 import { loadReferencePage } from './pages/reference';
 import { loadContributingPage } from './pages/contributing';
 import { loadDownloadsPage } from './pages/downloads';
+const basePath = '/SmoothMath-Docs';
 
 const routes: Record<string, () => HTMLElement> = {
-    '/': loadHomePage,
-    '/installation': loadInstallationPage,
-    '/usage': loadUsagePage,
-    '/reference': loadReferencePage,
-    '/contributing': loadContributingPage,
-    '/downloads': loadDownloadsPage,
+    [`${basePath}/`]: loadHomePage,
+    [`${basePath}/installation`]: loadInstallationPage,
+    [`${basePath}/usage`]: loadUsagePage,
+    [`${basePath}/reference`]: loadReferencePage,
+    [`${basePath}/contributing`]: loadContributingPage,
+    [`${basePath}/downloads`]: loadDownloadsPage,
 };
 
 function navigateTo(url: string) {
