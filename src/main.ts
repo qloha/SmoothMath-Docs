@@ -6,7 +6,6 @@ import { loadUsagePage } from './pages/usage';
 import { loadReferencePage } from './pages/reference';
 import { loadContributingPage } from './pages/contributing';
 import { loadDownloadsPage } from './pages/downloads';
-
 const basePath = '/SmoothMath-Docs';
 
 const routes: Record<string, () => HTMLElement> = {
@@ -19,16 +18,13 @@ const routes: Record<string, () => HTMLElement> = {
 };
 
 function navigateTo(url: string) {
-    const fullUrl = `${basePath}${url.startsWith('/') ? url : `/${url}`}`;
-    history.pushState(null, '', fullUrl);
+    history.pushState(null, '', url);
     updatePage();
 }
 
 function updatePage() {
     const root = document.querySelector('#app') as HTMLElement;
-
-    const relativePath = window.location.pathname.replace(basePath, '');
-    const renderPage = routes[`${basePath}${relativePath}`] || loadHomePage;
+    const renderPage = routes[window.location.pathname] || loadHomePage;
 
     root.innerHTML = '';
     root.appendChild(createNavbar());
@@ -43,14 +39,9 @@ function setupLinks() {
     links.forEach((link) => {
         link.addEventListener('click', (event) => {
             event.preventDefault();
-            const target = event.currentTarget as HTMLAnchorElement;
-
-            const relativePath = target.getAttribute('href') || '/';
-            navigateTo(relativePath);
+            const target = event.target as HTMLAnchorElement;
+            navigateTo(target.href);
         });
-
-        const linkElement = link as HTMLAnchorElement;
-        linkElement.href = `${basePath}${linkElement.getAttribute('href') || '/'}`;
     });
 }
 
